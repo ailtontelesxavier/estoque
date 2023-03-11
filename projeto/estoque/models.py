@@ -25,6 +25,10 @@ class Estoque(TimeStampedModel):
             return '{} - {} - {}'.format(self.pk, self.nf, self.created.strftime('%d-%m-%Y'))
         return '{} --- {}'.format(self.pk, self.created.strftime('%d-%m-%Y'))
 
+    def get_absolute_url(self):
+        return reverse_lazy("estoque:estoque_entrada_detail", kwargs={"pk": self.pk})
+    
+
     def nf_formated(self):
         if self.nf:
             return str(self.nf).zfill(3)

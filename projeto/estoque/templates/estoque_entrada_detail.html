@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <a href="{% url 'estoque:estoque_entrada_list' %}">Voltar</a>
+
+    <h1>{{ object }}
+
+    </h1>
+    <div class="col-sm-6">
+        <table class="table table-user-information">
+            <tbody>
+                <tr>
+                    <th class="text-right">NF</th>
+                    <td>{{object.nf_formated}}</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Data</th>
+                    <td>{{object.created}}</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Funcionario</th>
+                    <td>{{object.funcionario.first_name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
