@@ -25,5 +25,21 @@
             </tbody>
         </table>
     </div>
+    <table class="table table-user-information">
+        <tbody>
+            <tr>
+                <th class="text-right">Produto</th>
+                <th class="text-right">Quantidade</th>
+                <th class="text-right">Saldo</th>
+            </tr>
+            {% for obj in object.estoques.all %}
+            <tr>
+                <td>{{obj.produto}}</td>
+                <td>{{obj.quantidade}}</td>
+                <td>{{obj.saldo}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock content %}
