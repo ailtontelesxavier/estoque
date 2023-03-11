@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <!-- Button trigger modal -->
+    <div class=" pt-1">
+        <div class="col">
+            <h2>Estoque Entrada
+              <span class="pull-right"><a href="{ url 'produto:produto_add'%}"></a>
+                <button type="button" class="btn btn-primary">
+                  <span class="fa fa-plus"></span>Adicionar
+                </button>
+              </span>
+            </h2>
+            {% if object_list %}
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">NF</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Funcionario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for object in object_list %}
+                  <tr>
+                    <td>
+                        <a href="{# object.get_absolute_url #}">
+                            {{object}}
+                        </a>
+                    </td>
+                    <td>{{object.nf_formated}}</td>
+                    <td>{{object.created}}</td>
+                    <td>{{object.funcionario.first_name}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <p class="alert alert-warning">Sem intens na lista</p>
+              {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
