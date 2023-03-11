@@ -16,12 +16,20 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     
+    <style>
+      .ok {
+          color: green;
+      }
+      .no {
+          color: red;
+      }
+    </style>
     {% block css %}{% endblock css %}
   </head>
   <body>
     {% include 'includes/nav.html' %}
     <div class="container-fluid">
-      <div class="row">
+      <div class="container mt-5">
         {% block content %}{% endblock content %}
       </div>
     </div>

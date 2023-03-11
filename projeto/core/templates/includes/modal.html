@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <!-- Button trigger modal -->
+    <div class="row pt-5">
+        <div class="col text-center">
+            <button class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#TaskModal" id="addTaskButton">Add task</button>
+        </div>
+    </div>
+
+    <!-- Modal Add -->
+    <div class="modal top fade" id="TaskModal" tabindex="-1" aria-labelledby="TaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Add task</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/" method="POST" id="taskForm">
+                    <div class="modal-body">
+                            {% csrf_token %}
+                            <div class="form-outline mb-4">
+                                <input name='name' type="text" id="editNameInput" class="form-control"/>
+                                <label class="form-label" for="editNameInput">Name</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input name="desc" type="text" id="editDescInput" class="form-control">
+                                <label class="form-label" for="editDescInput">Description</label>
+                            </div>
+                            <input name="id" type="hidden" id="taskId" >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="confirmButton">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- List of tasks -->
+    <div class="row mt-3 p-5">
+        <div class="col d-flex justify-content-center align-items-center">
+            <ul class="list-group list-group-light" style="min-width: 22rem;">
+                {% for task in tasks %}
+                <li class="list-group-item d-flex justify-content-between align-items-center gap-5" id="{{task.id}}">
+                    <div>
+                        <div class="fw-bold name">{{task.name}}</div>
+                        <div class="fw-bold desc">{{task.desc}}</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <a class="btn btn-primary btn-floating me-2" data-mdb-toggle="modal" data-mdb-target="#TaskModal" onclick="setModalValues('{{task.id}}')">
+                            <span class="fas fa-pen text-white"></span>
+                        </a>
+                        <form action="{% url 'delete' task.id %}" class="my-0">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-floating">
+                                <span class="fas fa-trash text-white" title="delete"></span>
+                            </button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

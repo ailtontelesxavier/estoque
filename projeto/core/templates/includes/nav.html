@@ -14,8 +14,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Produtos</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'core:index'%}">Home</a>
+              <a class="nav-link" href="{% url 'produto:produto_list'%}">Produtos</a>
               <ul class="navbar-nav">
                 <!-- Dropdown -->
                 <li class="nav-item dropdown">
