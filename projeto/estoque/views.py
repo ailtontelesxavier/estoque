@@ -7,6 +7,7 @@ from django.views.generic import DetailView, ListView
 from django.forms import inlineformset_factory
 from estoque.models import Estoque, EstoqueItens
 from estoque.forms import EstoqueForm, EstoqueItensForm
+from produto.models import Produto
 
 
 def estoque_entrada_list(request):
@@ -48,7 +49,7 @@ def estoque_entrada_add(request):
             form = form.save()
             formset.save()
             url = 'estoque:estoque_entrada_detail'
-            
+            dar_baixa_estoque(form)
             return HttpResponseRedirect(resolve_url(url, form.pk))
     else:
         form = EstoqueForm(instance=estoque_form, prefix='main')
@@ -60,3 +61,13 @@ def estoque_entrada_add(request):
     }
     
     return render(request, templa_name, context,)
+
+
+def dar_baixa_estoque(form):
+    # Pega os produtos a partir da instância do formulário (Estoque).
+    produtos = form.estoques.all()
+    for item in produtos:
+        produto = Produto.objects.get(pk=item.produto.pk)
+        produto.estoque = item.saldo
+        produto.save()
+    print('Estoque atualizado com sucesso.')

@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from core.models import TimeStampedModel
 from produto.models import Produto
 
-#from .managers import EstoqueEntradaManager, EstoqueSaidaManager
+from .managers import EstoqueEntradaManager, EstoqueSaidaManager
 
 MOVIMENTO = (
     ('e', 'entrada'),
@@ -37,7 +37,7 @@ class Estoque(TimeStampedModel):
 
 class EstoqueEntrada(Estoque):
 
-    objects = None # EstoqueEntradaManager()
+    objects = EstoqueEntradaManager()
 
     class Meta:
         proxy = True
@@ -47,7 +47,7 @@ class EstoqueEntrada(Estoque):
 
 class EstoqueSaida(Estoque):
 
-    objects = None# EstoqueSaidaManager()
+    objects = EstoqueSaidaManager()
 
     class Meta:
         proxy = True
