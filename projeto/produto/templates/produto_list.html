@@ -6,10 +6,12 @@
     <div class=" pt-1">
         <div class="col">
             <h2>Lista de Produtos
-              <span class="pull-right"><a href="{% url 'produto:produto_add'%}"></a>
-                <button type="button" class="btn btn-primary">
-                  <span class="fa fa-plus"></span>Adicionar
-                </button>
+              <span class="pull-right">
+                <a href="{% url 'produto:produto_add' %}">
+                  <button type="button" class="btn btn-primary">
+                    <span class="fa fa-plus"></span>Adicionar
+                  </button>
+                </a>
               </span>
             </h2>
             {% if object_list %}
